@@ -12,11 +12,13 @@ if (list.length) {
     for (var x=2; x<length; x++) {
         var ele = elements[x];
         var node = ele.getElementsByClassName("UFICommentActorName")[0];
-        var name = node.innerText;
-        var link = node.href;
+        if (node) {
+            var name = node.textContent;
+            var link = node.href;
 
-        var rowArray = [x-1, name, link];
-        csvContent += rowArray.join(",") + "\r\n";
+            var rowArray = [x-1, name, link];
+            csvContent += rowArray.join(",") + "\r\n";
+        }
     }
 
     var encodedUri = encodeURI(csvContent);
@@ -30,7 +32,5 @@ if (list.length) {
     console.log("Check CSV!");
 
 } else {
-
-    console.log("No comments found!");
-
+    console.log("No comments!")
 }
